@@ -20,12 +20,20 @@ body {
   height: 1em;
   border-radius: 50%;
   background: lightblue;
+
+  position: absolute;
+  left: -0.5em;
+  bottom: 1em;
 }
 
 .cube {
   width: 2em;
   height: 2em;
   background: var(--boxcolor);
+
+  position: absolute;
+  top: -1em;
+  left: -1em;
 }
 
 .floor {
