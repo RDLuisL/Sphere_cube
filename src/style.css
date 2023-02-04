@@ -1,5 +1,6 @@
 :root {
   --boxcolor: #0ff7;
+  --ballcolor: lightblue;
 }
 
 body {
@@ -8,18 +9,24 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
+  font-size: 75px;
+  /* para verlo en una perspectiva de 10em por encima de la horizontal */
+  perspective: 10em;
+  /* efecto gran angular */
+  perspective-origin: 50% calc(50% -2em);
 }
 
 .scene {
   position: relative;
+  /* para que se vea en 3D */
+  transform-style: preserve-3d;
 }
 
 .ball {
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  background: lightblue;
+  background: var(--ballcolor);
 
   position: absolute;
   left: -0.5em;
@@ -29,16 +36,45 @@ body {
 .cube {
   width: 2em;
   height: 2em;
-  background: var(--boxcolor);
 
   position: absolute;
   top: -1em;
   left: -1em;
 }
 
+.left,
+.right,
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--boxcolor);
+}
+
+.front {
+  transform: translateZ(1em);
+}
+.right {
+  transform: rotateY(90deg) translateZ(1em);
+}
+.back {
+  transform: rotateY(90deg) translateZ(1em);
+}
+.left {
+  transform: rotateY(270deg) translateZ(1em);
+}
+
 .floor {
-  width: 5em;
-  height: 5em;
+  position: absolute;
+  top: 1em;
+  transform: translate(-50%, -50%)
+    /* rotando en el eje X 90 grados para quedar penpendicular a la pantalla */
+    rotateX(90deg);
+  width: 15em;
+  height: 15em;
+
+  /* patron de ajedres */
   background-image: repeating-conic-gradient(
     from 45deg,
     #111 0deg 90deg,
